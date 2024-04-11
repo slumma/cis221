@@ -3,10 +3,10 @@ def load_config(txt):
     costs = {}
     with open(txt, 'r') as infile:
         for m in infile:
-            x = m.strip().split(',')
+            name, price, cost = m.strip().split(',')
             if len(x) == 3:
-                prices.update({x[0].lower() : eval(x[1])})
-                costs.update({x[0].lower() : eval(x[2])})
+                prices.update({name.lower() : eval(price)})
+                costs.update({name.lower() : eval(cost)})
                 #              ^ product            ^ value
             else:
                 print('Error in number of values - Must be 3.')
@@ -76,9 +76,7 @@ def item_amt(item):
 def calc_ttl(r, b, n, price_catalog):
     ttl = ((r * price_catalog.get("ring")) + (b * price_catalog.get("bracelet")) + (n * price_catalog.get("necklace")))
     return ttl
-
-def calc_costs(r, b, n, cost_catalog):
-    print('hi')
+    
 #! main func
 def main():
     #establish dicts
@@ -89,7 +87,6 @@ def main():
         } 
     
     prices, costs = load_config("config.txt")
-    print(costs)
     print("Welcome to Sam's Jewelry Store!")
     ans = "y"
 
